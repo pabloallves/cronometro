@@ -12,11 +12,18 @@ let tempo = 1000;
 let cronometro;
 
 function iniciar(){
-        cronometro = setInterval(() => {timer()}, tempo);
+    cronometro = setInterval(() => {timer()}, tempo);
+
+    play.style.display = 'none';
+    pause.style.display = 'block';
+    reset.style.display = 'block';
 };
 
 function parar(){
     clearInterval(cronometro);
+
+    play.style.display = 'block';
+    pause.style.display = 'none';
 };
 
 function limpar(){
@@ -24,7 +31,12 @@ function limpar(){
     horas = 0;
     minutos = 0;
     segundos = 0;
+
     display.innerText = '00:00:00';
+
+    play.style.display = 'block';
+    reset.style.display = 'none';
+    pause.style.display = 'none';   
 };
 
 function timer(){
@@ -41,8 +53,14 @@ function timer(){
 
         if(minutos == 60){
             minutos == 0;
-            horas ++
+            horas ++;
         };
+            if(horas == 24){
+                segundos = 0;
+                minutos = 0;
+                horas = 0;
+                // espaço para adicionar dia
+            };
     }
 }
 
